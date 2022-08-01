@@ -31,8 +31,14 @@ func main() {
 	// Attach Middleware before executing the request
 	protected.Use(middleware.JwtAuthMiddleware())
 
-	// Users
-	protected.GET("/self",controller.Self)
+	// Users CRUD
+	usersGroup := protected.Group("/users")
+	usersGroup.GET("/self",controller.Self)
+	usersGroup.GET("/index",controller.IndexUsers)
+	usersGroup.GET("/:userId",controller.ShowUser)
+	usersGroup.POST("",controller.StoreUser)
+	usersGroup.PUT("/:userId",controller.UpdateUser)
+	usersGroup.DELETE("/:userId",controller.DestroyUser)
 
 	// Relays CRUD
 	relaysGroup := protected.Group("/relays")
@@ -42,7 +48,7 @@ func main() {
 	relaysGroup.PUT("/:relayId",controller.UpdateRelay)
 	relaysGroup.DELETE("/:relayId",controller.DestroyRelay)
 
-	// Relay Schedules
+	// Relay Schedules CRUD
 	relaySchedulesGroup := protected.Group("/relay-schedules")
 	relaySchedulesGroup.GET("/index",controller.IndexSchedules)
 	relaySchedulesGroup.GET("/:scheduleId",controller.ShowSchedule)
@@ -50,7 +56,7 @@ func main() {
 	relaySchedulesGroup.PUT("/:scheduleId",controller.UpdateSchedule)
 	relaySchedulesGroup.DELETE("/:scheduleId",controller.DestroySchedule)
 
-	// Relay Logs
+	// Relay Logs Index + Show
 	relayLogsGroup := protected.Group("/relay-logs")
 	relayLogsGroup.GET("/index",controller.IndexRelayLogs)
 	relayLogsGroup.GET("/:scheduleId",controller.ShowRelayLog)

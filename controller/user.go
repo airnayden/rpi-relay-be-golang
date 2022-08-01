@@ -30,4 +30,27 @@ func Self(c *gin.Context){
 	c.JSON(http.StatusOK, gin.H{"message":"Success","data":user})
 }
 
-// TODO: CRUD for users
+// IndexUsers - list available Users
+func IndexUsers(c *gin.Context) {
+
+}
+
+// ShowUser - show a single User entry
+func ShowUser(c *gin.Context) {
+
+}
+
+// StoreUser - add new User
+func StoreUser(c *gin.Context) {
+
+}
+
+// UpdateUser - update existing User record
+func UpdateUser(c *gin.Context) {
+
+}
+
+// DestroyUser - delete User record
+func DestroyUser(c *gin.Context) {
+
+}
